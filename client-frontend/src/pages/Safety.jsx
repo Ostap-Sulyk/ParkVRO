@@ -58,9 +58,10 @@ const Safety = () => {
 
         </div>
       </div>
-      );
+    </div>
+  );
 };
 
 
 
-      export default Safety
+export default Safety;
