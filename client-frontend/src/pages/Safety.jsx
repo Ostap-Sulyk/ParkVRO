@@ -2,21 +2,21 @@ const Safety = () => {
 return (
   <div style={{ 
     position: "relative",
-    height: "150vh",
+    height: "100vh",
   }}>
     <img src="src\pictures\safety.jpg" alt="Background" style={{ 
       position: "absolute",
       top: 100,
       left: 0,
       width: "100%",
-      height: "40%",
+      height: "75%",
       objectFit: "cover",
       zIndex: -1,
       opacity: 0.8,
     }} />
     <div style={{ 
       position: "absolute",
-      top: "30%",
+      top: "50%",
       left: "50%",
       transform: "translate(-50%, -50%)",
       backgroundColor: "rgba(255, 255, 255, 0.8)",
