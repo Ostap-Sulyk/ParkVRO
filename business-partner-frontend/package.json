@@ -16,7 +16,8 @@
     "react-places-autocomplete": "^7.3.0",
     "react-router": "^6.8.1",
     "react-router-dom": "^6.8.1",
-    "react-toastify": "^9.1.1"
+    "react-toastify": "^9.1.1",
+    "tailwind": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^15.7.12",
