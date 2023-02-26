@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import Root from "./routes/root"
 import ErrorPage from "./ErrorPage.jsx";
 import Home from "./pages/Home.jsx";
@@ -10,7 +10,7 @@ import Help from "./pages/Help.jsx";
 import Profile from "./pages/Profile.jsx";
 import Signup from "./components/Signup.jsx";
 import Safety from "./pages/Safety.jsx";
-import AddParkingSpot from "./pages/AddParkingSpot.jsx";
+import MyBookings from "./pages/MyBookings.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,10 +20,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/signup",
-                element: <Signup />
+                element: <Signup/>
             },
             {
-                path: "/home",
+                path: "/home/:id",
                 element: <Home/>
             },
             {
@@ -39,12 +39,12 @@ const router = createBrowserRouter([
                 element: <Profile/>
             },
             {
-              path: "safety",
-              element: <Safety  />
+                path: "safety",
+                element: <Safety/>
             },
             {
-                path: "addParking",
-                element: <AddParkingSpot />
+                path: "myBookings/:id",
+                element: <MyBookings/>
             },
 
         ]

@@ -28,7 +28,7 @@ function AddressForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white rounded-lg overflow-hidden shadow-md p-6">
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-2 bg-white rounded-lg overflow-hidden shadow-md p-6">
             <h2 className="text-xl font-semibold mb-4">Enter Your Address</h2>
             <div className="mb-4">
                 <label htmlFor="street" className="block font-medium text-gray-700 mb-2">Street</label>

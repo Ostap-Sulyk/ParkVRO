@@ -4,27 +4,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from 'react-router-dom';
 
 function Signup() {
+
     const [formValues, setFormValues] = useState({
         firstName: '',
         lastName: '',
         email: '',
         password: '',
         confirmPassword: '',
-        address: '',
-        phoneNumber: '',
     });
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch('http://localhost:8080/bp/register', {
+        const response = await fetch('http://localhost:8080/customer/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formValues),
-        });
+        }).then(() => fetch('http://localhost:8080/customer/all').then(response => response));
 
         if (response.ok) {
             toast.success('Account successfully created');
@@ -34,14 +33,16 @@ function Signup() {
                 email: '',
                 password: '',
                 confirmPassword: '',
-                address: '',
-                phoneNumber: '',
             });
-            navigate('/home');
-        } else {
-            navigate('/home');
         }
-    };
+        fetch('http://localhost:8080/customer/all')
+            .then((response) => response.json())
+            .then((data) => {
+                const lastId = data.pop().id;
+                navigate(`/home/${lastId}`);
+            });
+        navigate(`/home/${3}`); //TODO: change it from hardcoded to dynamic
+    }
 
     const handleChange = (event) => {
         setFormValues({
@@ -90,17 +91,6 @@ function Signup() {
                         />
                     </label>
 
-                    <label className="block font-medium text-lg mb-2">
-                        Address:
-                        <input
-                            className="border border-gray-400 p-2 rounded w-full"
-                            type="text" name="address" value={formValues.address} onChange={handleChange}/>
-                    </label>
-                    <label className="block font-medium text-lg mb-2">
-                        Phone Number:
-                        <input className="border border-gray-400 p-2 rounded w-full" type="tel" name="phoneNumber"
-                               value={formValues.phoneNumber} onChange={handleChange}/>
-                    </label>
                     <label className="block font-medium text-lg mb-2" htmlFor="password">
                         Password:
                         <input
