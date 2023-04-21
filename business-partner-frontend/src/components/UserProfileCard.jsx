@@ -1,58 +1,163 @@
-import {useState} from "react";
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function UserProfileCard({user}) {
-    const {firstName, lastName, phoneNumber, email, password, address} = user;
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const navigate = useNavigate();
+    const [formValues, setFormValues] = useState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        address: user.address,
+        phoneNumber: user.phoneNumber,
+        password: '',
+        confirmPassword: ''
+    });
 
-    const togglePasswordVisibility = () => {
-        setIsPasswordVisible(!isPasswordVisible);
+    const handleInputChange = (event) => {
+        const {name, value} = event.target;
+        setFormValues({...formValues, [name]: value});
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const {firstName, lastName, email, address, phoneNumber, password} = formValues;
+        const payload = {
+            firstName, lastName, email, address, phoneNumber, password
+        };
+        const u = localStorage.getItem('username');
+        const p = localStorage.getItem('password');
+        fetch('http://localhost:8080/bp', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + btoa(`${u}:${p}`)
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to update user profile');
+                }
+                alert('User profile updated successfully');
+                localStorage.setItem('password', password)
+                localStorage.setItem('username', email)
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Failed to update user profile');
+            });
+    };
+
+    const deleteUser = () => {
+        if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            const u = localStorage.getItem('username');
+            const p = localStorage.getItem('password');
+            fetch('http://localhost:8080/bp', {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Basic ' + btoa(`${u}:${p}`)
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete user account');
+                    }
+                    alert('User account deleted successfully');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('username');
+                    navigate('/signup');
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('Failed to delete user account');
+                });
+        }
+    };
+
+    const validatePassword = () => {
+        return formValues.password === formValues.confirmPassword;
     };
 
     return (
-        <div className="w-1/3 mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-11">
-            <div className="flex justify-center items-center h-20 bg-indigo-500" style={{height: "200px"}}>
-                <img
-                    src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=400"
-                    alt="Default profile picture"
-                    className="w-40 h-40 rounded-full object-cover"
-                />
-
-            </div>
-            <div className="py-6 px-8 p-3">
-                <div className="flex justify-between items-center mb-4">
-                    <p className="text-lg font-semibold text-gray-600">Name:</p>
-                    <h2 className="text-3xl font-semibold text-gray-800">{firstName} {lastName}</h2>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="text-lg font-semibold text-gray-600">Email:</p>
-                    <p className="text-lg text-gray-600">{email}</p>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="text-lg font-semibold text-gray-600">Phone:</p>
-                    <p className="text-lg text-gray-600">{phoneNumber}</p>
-                </div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="text-lg font-semibold text-gray-600">Address:</p>
-                    <p className="text-lg text-gray-600">{address}</p>
-                </div>
-                <div className="flex justify-between items-center mt-6">
-                    <p className="text-lg font-semibold text-gray-600 mb-2">Password:</p>
-                    <div className="flex items-center">
-                        <p className="text-lg font-semibold mr-2">
-                            {isPasswordVisible ? password : "*".repeat(password.length)}
-                        </p>
-                        <button
-                            onClick={togglePasswordVisibility}
-                            className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        >
-                            {isPasswordVisible ? "Hide" : "Show"}
+        <div className="top-0 left-0 w-full h-full flex justify-center items-center">
+            <div className="w-1/2">
+                    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="firstName">
+                                First Name:
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="firstName" type="text" name="firstName" value={formValues.firstName}
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="lastName">
+                                Last Name:
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="lastName" type="text" name="lastName" value={formValues.lastName}
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
+                                Email:
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="email" type="email" name="email" value={formValues.email}
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="address">
+                                Address:
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="address" type="text" name="address" value={formValues.address}
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="phoneNumber">
+                                Phone Number:
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="phoneNumber" type="text" name="phoneNumber" value={formValues.phoneNumber}
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
+                                Password:
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="password" type="password" name="password" value={formValues.password}
+                                onChange={handleInputChange}/>
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 font-bold mb-2" htmlFor="confirmPassword">
+                                Confirm Password:
+                            </label>
+                            <input
+                                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${validatePassword() ? '' : 'border-red-500'}`}
+                                id="confirmPassword" type="password" name="confirmPassword"
+                                value={formValues.confirmPassword}
+                                onChange={handleInputChange}/>
+                            {!validatePassword() && <span className="text-red">Passwords do not match</span>}
+                        </div>
+                        <button type="submit" disabled={!validatePassword()}
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Update Profile
                         </button>
-                    </div>
+                        <button type="button" onClick={deleteUser}
+                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4">
+                            Delete Account
+                        </button>
+                    </form>
                 </div>
-            </div>
-
         </div>
-
     );
 }
 

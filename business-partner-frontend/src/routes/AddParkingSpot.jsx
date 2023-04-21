@@ -1,12 +1,11 @@
-import AddressForm from "../components/AddressForm.jsx";
+import AddParkingSpotForm from "../components/AddParkingSpotForm.jsx";
 
 import { useParams } from "react-router-dom";
 
 const AddParkingSpot = () => {
-    const { id } = useParams();
     return (
         <div>
-            <AddressForm id={id}/>
+            <AddParkingSpotForm/>
         </div>
     );
 };

@@ -27,6 +27,9 @@ function Signup() {
         });
 
         if (response.ok) {
+            localStorage.setItem('username', formValues.email);
+            localStorage.setItem('password', formValues.password);
+
             toast.success('Account successfully created');
             setFormValues({
                 firstName: '',
