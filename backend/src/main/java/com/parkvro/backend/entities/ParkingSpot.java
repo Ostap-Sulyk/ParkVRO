@@ -3,10 +3,11 @@ package com.parkvro.backend.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
-// TODO: wire booking to parking spot
-// TODO: wire booking to customer
+import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,8 +16,9 @@ import lombok.*;
 @Table
 public class ParkingSpot {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @NonNull
     @NotBlank
     @Column(nullable = false)
@@ -24,7 +26,23 @@ public class ParkingSpot {
 
     @NonNull
     @Column(nullable = false)
+    private double lat;
+
+    @NonNull
+    @Column(nullable = false)
+    private double lng;
+
+    @NonNull
+    @Column(nullable = false)
     private Boolean available;
+
+    @NonNull
+    @Column(nullable = false)
+    @Positive
+    private BigDecimal price;
+
+    @Lob
+    private byte[] image;
 
     @NonNull
     @JsonIgnore
@@ -36,8 +54,4 @@ public class ParkingSpot {
         this.available = true;
     }
 
-    public void update(ParkingSpot newParkingSpot) {
-        this.available = newParkingSpot.getAvailable();
-        this.address = newParkingSpot.getAddress();
-    }
 }

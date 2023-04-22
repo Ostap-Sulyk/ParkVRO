@@ -1,0 +1,3 @@
+2023-04-05 14:36:45 database: opening /Users/ostapsulyk/Desktop/park-vro/backend/.metals/metals
+org.h2.message.DbException: Error opening database: "Sleep interrupted" [8000-214]
+	at org.h2.message.DbException.get(DbException.java:212)

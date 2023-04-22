@@ -1,0 +1,138 @@
+2023.04.05 13:02:27 INFO  Started: Metals version 0.11.11 in workspace '/Users/ostapsulyk/Desktop/park-vro/backend' for client Visual Studio Code 1.77.1.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/Users/ostapsulyk/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.11.0/scribe-slf4j_2.13-3.11.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2023.04.05 13:02:28 INFO  time: initialize in 0.3s
+2023.04.05 13:02:29 WARN  Build server is not auto-connectable.
+2023.04.05 13:02:29 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/BPController.java
+Apr 05, 2023 1:02:30 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Apr 05, 2023 1:02:51 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Apr 05, 2023 1:03:03 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+Apr 05, 2023 1:03:35 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.04.05 13:03:38 INFO  Shutting down server
+2023.04.05 13:03:38 INFO  shutting down Metals
+2023.04.05 13:03:38 INFO  Exiting server
+2023.04.05 14:36:43 INFO  Started: Metals version 0.11.11 in workspace '/Users/ostapsulyk/Desktop/park-vro/backend' for client Visual Studio Code 1.77.1.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/Users/ostapsulyk/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.11.0/scribe-slf4j_2.13-3.11.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2023.04.05 14:36:44 INFO  time: initialize in 0.39s
+2023.04.05 14:36:45 WARN  Build server is not auto-connectable.
+java.util.concurrent.RejectedExecutionException: Task Future(<not completed>) rejected from java.util.concurrent.ThreadPoolExecutor@639c2c1d[Shutting down, pool size = 3, active threads = 3, queued tasks = 0, completed tasks = 35]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at scala.concurrent.impl.ExecutionContextImpl.execute(ExecutionContextImpl.scala:21)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:429)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:285)
+	at scala.concurrent.impl.Promise$Transformation.handleFailure(Promise.scala:444)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:435)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:285)
+	at scala.concurrent.impl.Promise$Transformation.handleFailure(Promise.scala:444)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:435)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:338)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:285)
+	at scala.concurrent.impl.Promise$Transformation.handleFailure(Promise.scala:444)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:506)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+2023.04.09 20:29:50 INFO  Started: Metals version 0.11.11 in workspace '/Users/ostapsulyk/Desktop/park-vro/backend' for client Visual Studio Code 1.77.1.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/Users/ostapsulyk/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.11.0/scribe-slf4j_2.13-3.11.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2023.04.09 20:29:52 INFO  time: initialize in 2.52s
+2023.04.09 20:29:54 WARN  Build server is not auto-connectable.
+2023.04.09 20:29:54 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/BPController.java
+2023.04.09 20:29:54 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/CustomerController.java
+2023.04.09 20:29:55 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/CustomerController.java
+2023.04.09 20:29:56 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/CustomerController.java
+Apr 09, 2023 8:30:05 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2023.04.09 20:30:20 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/CustomerController.java
+2023.04.09 20:30:21 INFO  Shutting down server
+2023.04.09 20:30:21 INFO  shutting down Metals
+2023.04.09 20:30:21 INFO  Exiting server
+2023.04.09 21:58:59 INFO  Started: Metals version 0.11.11 in workspace '/Users/ostapsulyk/Desktop/park-vro/backend' for client Visual Studio Code 1.77.1.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/Users/ostapsulyk/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.11.0/scribe-slf4j_2.13-3.11.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2023.04.09 21:59:00 INFO  time: initialize in 0.39s
+2023.04.09 21:59:01 WARN  Build server is not auto-connectable.
+Apr 09, 2023 9:59:01 P.M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+2023.04.09 21:59:01 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/CustomerController.java
+2023.04.09 21:59:03 INFO  Shutting down server
+2023.04.09 21:59:03 INFO  shutting down Metals
+2023.04.09 21:59:03 INFO  Exiting server
+2023.04.09 21:59:03 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:577)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.lang.Thread.run(Thread.java:1623)
+
+2023.04.18 17:47:38 INFO  Started: Metals version 0.11.11 in workspace '/Users/ostapsulyk/Desktop/park-vro/backend' for client Visual Studio Code 1.77.3.
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions 1.7.x or earlier.
+SLF4J: Ignoring binding found at [jar:file:/Users/ostapsulyk/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/outr/scribe-slf4j_2.13/3.11.0/scribe-slf4j_2.13-3.11.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See https://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+2023.04.18 17:47:38 INFO  time: initialize in 0.49s
+2023.04.18 17:47:40 WARN  Build server is not auto-connectable.
+2023.04.18 17:47:40 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:47:40 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/CustomerController.java
+Apr 18, 2023 5:47:40 P.M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+Apr 18, 2023 5:47:40 P.M. org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+2023.04.18 17:47:42 INFO  time: code lens generation in 2.19s
+2023.04.18 17:47:42 INFO  time: code lens generation in 1.74s
+2023.04.18 17:49:33 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:34 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:34 WARN  Running javac-semanticdb failed for file:///Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java. Output:
+/Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java:6: error: <identifier> expected
+import com.parkvro.backend.repository.;
+                                      ^
+1 error
+2023.04.18 17:49:35 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:36 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:42 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:42 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:44 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:45 WARN  Running javac-semanticdb failed for file:///Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java. Output:
+/Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java:3: error: <identifier> expected
+import com.parkvro.backend.entities.;
+                                    ^
+1 error
+2023.04.18 17:49:45 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:46 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:53 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/BackendApplication.java
+2023.04.18 17:49:54 WARN  no build target for: /Users/ostapsulyk/Desktop/park-vro/backend/src/main/java/com/parkvro/backend/web/BPController.java
+2023.04.18 17:49:55 INFO  Shutting down server
+2023.04.18 17:49:55 INFO  shutting down Metals
+2023.04.18 17:49:55 INFO  Exiting server

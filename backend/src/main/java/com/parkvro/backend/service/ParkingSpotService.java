@@ -1,23 +1,23 @@
 package com.parkvro.backend.service;
 
+import com.parkvro.backend.entities.BusinessPartner;
 import com.parkvro.backend.entities.ParkingSpot;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ParkingSpotService {
-    ParkingSpot saveParkingSpot(ParkingSpot parkingSpot, Long businessPartnerId);
+    ParkingSpot saveParkingSpot(ParkingSpot parkingSpot, BusinessPartner businessPartner);
 
-    List<ParkingSpot> getAllParking();
     List<ParkingSpot> getAllAvailableParking();
 
-    List<ParkingSpot> getAllParkingByBusinessPartner(Long id);
+    List<ParkingSpot> getAllParkingByBusinessPartner(String email);
 
-    ParkingSpot editParkingSpot(ParkingSpot parkingSpot, Long id);
+    Optional<ParkingSpot> getParkingSpot(Long id, String email);
+    Optional<ParkingSpot> getParkingSpot(Long id);
 
-    ParkingSpot getParkingSpot(Long id);
+    void deleteParkingSpot(Long id, String email);
 
-    void deleteParkingSpot(Long id);
-
-
+    Optional<ParkingSpot> findById(Long id);
 
 }

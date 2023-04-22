@@ -6,13 +6,12 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
-
-// TODO: add password hashing
 
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @RequiredArgsConstructor
 @Entity
 @Table(name = "business_partner")
@@ -44,7 +43,11 @@ public class BusinessPartner {
     @NotBlank
     private String password;
 
+    @NonNull
+    private BigDecimal balance;
+
     @JsonIgnore
     @OneToMany(mappedBy = "businessPartner", cascade = CascadeType.ALL)
     private List<ParkingSpot> parkingSpots;
+
 }

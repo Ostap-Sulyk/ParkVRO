@@ -1,6 +1,7 @@
 package com.parkvro.backend.service;
 
 import com.parkvro.backend.entities.Booking;
+import com.parkvro.backend.entities.BusinessPartner;
 import com.parkvro.backend.entities.Customer;
 import com.parkvro.backend.entities.ParkingSpot;
 import com.parkvro.backend.repository.BookingRepository;
@@ -9,7 +10,13 @@ import com.parkvro.backend.repository.ParkingSpotRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -20,29 +27,38 @@ public class BookingServiceImpl implements BookingService {
     private  ParkingSpotRepository parkingSpotRepository;
 
     @Override
-    public void deleteBooking(Long id) {
-        bookingRepository.deleteById(id);
-    }
+    public Optional<Booking> createBooking(Map<String, Object> bookingDateRaw, Long parkingSpotId, String customerEmail) {
 
-    @Override
-    public Booking getBooking(Long id) {
-        return bookingRepository.findById(id).get();
-    }
-
-    @Override
-    public Booking createBooking(Booking booking, Long customerId, Long parkingSpotId) {
-        Customer customer = customerRepository.findById(customerId).get();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         ParkingSpot parkingSpot = parkingSpotRepository.findById(parkingSpotId).get();
-        if(parkingSpot.getAvailable()){
-            parkingSpot.setAvailable(false);
-            booking.setCustomer(customer);
-            booking.setParkingSpot(parkingSpot);
-            return bookingRepository.save(booking);
-        }else {
-            throw new RuntimeException("Parking spot is not available");
+        Customer customer = customerRepository.findByEmail(customerEmail).get();
+        BusinessPartner businessPartner = parkingSpot.getBusinessPartner();
+        businessPartner.setBalance(businessPartner.getBalance().add(parkingSpot.getPrice()));
+
+
+        // Retrieve the bookingDate property from the request body
+        String bookingDate = (String) bookingDateRaw.get("bookingDate");
+
+        // Validate the bookingDate using the DateTimeFormatter
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(bookingDate, formatter);
+        } catch (DateTimeParseException e) {
+            return Optional.empty();
         }
 
+        // Check if there is already a booking for the given parking spot on the given date
+        Optional<Booking> existingBooking = bookingRepository.findByParkingSpotAndBookingDate(parkingSpot, localDate);
+        if (existingBooking.isPresent()) {
+            // A booking already exists for the given parking spot on the given date, return null to indicate failure
+            return Optional.empty();
+        } else {
+            // No booking exists for the given parking spot on the given date, create a new booking and save it
+            Booking booking = new Booking(Date.valueOf(localDate), customer, parkingSpot);
+            return Optional.of(bookingRepository.save(booking));
+        }
     }
+
 
     @Override
     public List<Booking> getBookingsByCustomer(Long customerId) {
@@ -54,8 +70,14 @@ public class BookingServiceImpl implements BookingService {
         return getBookingsByParkingSpot(parkingSpotId);
     }
 
+
     @Override
-    public List<Booking> getAllBookings() {
-        return (List<Booking>) bookingRepository.findAll();
+    public List<Booking> getBookingsByDate(Long parkingSpotId, LocalDate startDate, LocalDate endDate) {
+        return bookingRepository.findAllByParkingSpotIdAndDate(parkingSpotId, startDate, endDate);
+    }
+
+    @Override
+    public List<Booking> getBookingsByCustomerEmail(String email) {
+        return bookingRepository.findAllByCustomerEmail(email);
     }
 }

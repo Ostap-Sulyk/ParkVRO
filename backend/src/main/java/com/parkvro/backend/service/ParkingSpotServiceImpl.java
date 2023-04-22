@@ -1,24 +1,25 @@
 package com.parkvro.backend.service;
 
+import com.parkvro.backend.entities.BusinessPartner;
 import com.parkvro.backend.entities.ParkingSpot;
 import com.parkvro.backend.repository.ParkingSpotRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ParkingSpotServiceImpl implements ParkingSpotService {
     private final ParkingSpotRepository parkingSpotRepository;
-
-    public ParkingSpot saveParkingSpot(ParkingSpot parkingSpot, Long businessPartnerId) {
-        return parkingSpotRepository.save(parkingSpot);
+    public Optional<ParkingSpot> findById(Long id) {
+        return parkingSpotRepository.findById(id);
     }
 
-    @Override
-    public List<ParkingSpot> getAllParking() {
-        return (List<ParkingSpot>) parkingSpotRepository.findAll();
+    public ParkingSpot saveParkingSpot(ParkingSpot parkingSpot, BusinessPartner bp) {
+        parkingSpot.setBusinessPartner(bp);
+        return parkingSpotRepository.save(parkingSpot);
     }
 
     @Override
@@ -26,27 +27,26 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
         return parkingSpotRepository.findAllByAvailableIsTrue();
     }
 
+
     @Override
-    public List<ParkingSpot> getAllParkingByBusinessPartner(Long businessPartnerId) {
-        return parkingSpotRepository.findAllByBusinessPartnerId(businessPartnerId);
+    public List<ParkingSpot> getAllParkingByBusinessPartner(String email) {
+        return parkingSpotRepository.findAllByBusinessPartnerEmail(email);
+    }
+
+
+    @Override
+    public Optional<ParkingSpot> getParkingSpot(Long id, String email) {
+        return parkingSpotRepository.findByIdAndBusinessPartnerEmail(id, email);
     }
 
     @Override
-    public ParkingSpot editParkingSpot(ParkingSpot parkingSpot, Long id) {
-        ParkingSpot myParkingSpot = parkingSpotRepository.findById(id).get();
-        myParkingSpot.update(parkingSpot);
-        parkingSpotRepository.save(myParkingSpot);
-        return myParkingSpot;
+    public Optional<ParkingSpot> getParkingSpot(Long id) {
+        return parkingSpotRepository.findById(id);
     }
 
     @Override
-    public ParkingSpot getParkingSpot(Long id) {
-        return parkingSpotRepository.findById(id).get();
-    }
-
-    @Override
-    public void deleteParkingSpot(Long id) {
-
+    public void deleteParkingSpot(Long id, String email) {
+        parkingSpotRepository.findByIdAndBusinessPartnerEmail(id, email).ifPresent(parkingSpotRepository::delete);
     }
 
 }
